@@ -1,11 +1,3 @@
----
-title: 数组
-date: 2012-12-11
-category: grammar
-layout: page
-modifiedOn: 2013-11-24
----
-
 ## 数组的定义
 
 数组（array）是按次序排列的一组值，每个值的位置都有编号（从0开始）。整个数组用方括号表示。
@@ -238,7 +230,8 @@ obj.length // 0
 
 典型的类似数组的对象是函数的arguments对象，以及大多数DOM元素集，还有字符串。
 
-{% highlight javascript %}
+```javascript
+
 
 // arguments对象
 function args() { return arguments }
@@ -258,15 +251,16 @@ elts instanceof Array // false
 'abc'.length // 3
 'abc' instanceof Array // false
 
-{% endhighlight %}
+```
 
 通过函数的call方法，可以用slice方法将类似数组的对象，变成真正的数组。
 
-{% highlight javascript %}
+```javascript
+
 
 var arr = Array.prototype.slice.call(arguments);
 
-{% endhighlight %}
+```
 
 遍历类似数组的对象，可以采用for循环，也可以采用数组的forEach方法。
 

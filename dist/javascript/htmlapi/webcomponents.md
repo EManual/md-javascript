@@ -1,11 +1,3 @@
----
-title: Web Components
-category: htmlapi
-layout: page
-date: 2014-07-09
-modifiedOn: 2014-07-09
----
-
 ## 概述
 
 各种网站往往需要一些相同的模块，比如日历、调色板等等，这种模块就被称为“组件”（component）。Web Component就是网页组件式开发的技术规范。

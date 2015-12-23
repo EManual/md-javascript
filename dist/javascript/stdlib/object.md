@@ -1,11 +1,3 @@
----
-title: Object对象
-layout: page
-category: stdlib
-date: 2013-04-30
-modifiedOn: 2013-12-15
----
-
 ## 概述
 
 JavaScript原生提供一个Object对象（注意起首的O是大写），所有其他对象都继承自这个对象。Object本身也是一个构造函数，可以直接通过它来生成新对象。
@@ -33,7 +25,8 @@ new Object(123) instanceof Number
 
 比如，在Object对象上面定义一个print方法，显示其他对象的内容。
 
-{% highlight javascript %}
+```javascript
+
 
 Object.print = function(o){ console.log(o) };
 
@@ -42,13 +35,14 @@ var o = new Object();
 Object.print(o)
 // Object
 
-{% endhighlight %}
+```
 
 **（2）部署在Object.prototype对象**
 
 所有构造函数都有一个prototype属性，指向一个原型对象。凡是定义在Object.prototype对象上面的属性和方法，将被所有实例对象共享。（关于prototype属性的详细解释，参见《面向对象编程》一章。）
 
-{% highlight javascript %}
+```javascript
+
 
 Object.prototype.print = function(){ console.log(this)};
 
@@ -56,7 +50,7 @@ var o = new Object();
 
 o.print() // Object 
 
-{% endhighlight %}
+```
 
 上面代码在Object.prototype定义了一个print方法，然后生成一个Object的实例o。o直接继承了Object.prototype的属性和方法，可以在自身调用它们，也就是说，o对象的print方法实质上是调用Object.prototype.print方法。。
 
@@ -86,13 +80,14 @@ Object(function(){}) // 返回原函数
 
 如果Object函数的参数是一个对象，它总是返回原对象。利用这一点，可以写一个判断变量是否为对象的函数。
 
-{% highlight javascript %}
+```javascript
+
 
 function isObject(value) {
     return value === Object(value);
 }
 
-{% endhighlight %}
+```
 
 ### Object.keys()，Object.getOwnPropertyNames()
 
@@ -138,7 +133,8 @@ Object.getOwnPropertyNames(o).length
 
 Object.observe方法用于观察对象属性的变化。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {};
 
@@ -152,7 +148,7 @@ o.foo = 1; // add, 'foo', undefined
 o.foo = 2; // update, 'foo', 1
 delete o.foo; // delete, 'foo', 2
 
-{% endhighlight %}
+```
 
 上面代码表示，通过Object.observe函数，对o对象指定回调函数。一旦o对象的属性出现任何变化，就会调用回调函数，回调函数通过一个参数对象读取o的属性变化的信息。
 
@@ -202,13 +198,14 @@ Object实例对象的方法，主要有以下六个。
 
 valueOf方法的作用是返回一个对象的值，默认情况下返回对象本身。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = new Object();
 
 o.valueOf() === o // true
 
-{% endhighlight %}
+```
 
 上面代码比较o的valueOf方法返回值与o本身，两者是一样的。
 
@@ -222,14 +219,15 @@ var o = new Object();
 
 上面代码将对象o与数字1相加，这时JavaScript就会默认调用valueOf()方法。所以，如果自定义valueOf方法，就可以得到想要的结果。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = new Object();
 o.valueOf = function (){return 2;};
 
 1 + o // 3
 
-{% endhighlight %}
+```
 
 上面代码自定义了o对象的valueOf方法，于是1 + o就得到了3。这种方法就相当于用o.valueOf覆盖Object.prototype.valueOf。
 
@@ -567,7 +565,8 @@ JSON.stringify(car) //  '{id: 123, color: "red", owner: 12}'
 
 Object.getOwnPropertyNames方法返回直接定义在某个对象上面的全部属性的名称，而不管该属性是否可枚举。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = Object.defineProperties({}, {
         p1: { value: 1, enumerable: true },
@@ -577,11 +576,12 @@ var o = Object.defineProperties({}, {
 Object.getOwnPropertyNames(o)
 // ["p1", "p2"]
 
-{% endhighlight %}
+```
 
 一般来说，系统原生的属性（即非用户自定义的属性）都是不可枚举的。
 
-{% highlight javascript %}
+```javascript
+
 
 // 比如，数组实例自带length属性是不可枚举的
 Object.keys([]) // []
@@ -598,7 +598,7 @@ Object.getOwnPropertyNames(Object.prototype)
 //  'propertyIsEnumerable',
 //  'toString']
 
-{% endhighlight %}
+```
 
 上面代码可以看到，数组的实例对象（[]）没有可枚举属性，不可枚举属性有length；Object.prototype对象也没有可枚举属性，但是有不少不可枚举属性。
 
@@ -606,7 +606,8 @@ Object.getOwnPropertyNames(Object.prototype)
 
 对象实例的propertyIsEnumerable方法用来判断一个属性是否可枚举。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {};
 o.p = 123;
@@ -614,7 +615,7 @@ o.p = 123;
 o.propertyIsEnumerable("p") // true
 o.propertyIsEnumerable("toString") // false
 
-{% endhighlight %}
+```
 
 上面代码中，用户自定义的p属性是可枚举的，而继承自原型对象的toString属性是不可枚举的。
 
@@ -686,7 +687,8 @@ Object.defineProperty(o2,'p', {value: 2})
 
 可配置性决定了一个变量是否可以被删除（delete）。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = Object.defineProperties({}, {
         p1: { value: 1, configurable: true },
@@ -699,13 +701,14 @@ delete o.p2 // false
 o.p1 // undefined
 o.p2 // 2
 
-{% endhighlight %}
+```
 
 上面代码中的对象o有两个属性，p1是可配置的，p2是不可配置的。结果，p2就无法删除。
 
 需要注意的是，当使用var命令声明变量时，变量的configurable为false。
 
-{% highlight javascript %}
+```javascript
+
 
 var a1 = 1;
 
@@ -717,11 +720,12 @@ Object.getOwnPropertyDescriptor(this,'a1')
 //	configurable: false
 // }
 
-{% endhighlight %}
+```
 
 而不使用var命令声明变量时（或者使用属性赋值的方式声明变量），变量的可配置性为true。
 
-{% highlight javascript %}
+```javascript
+
 
 a2 = 1;
 
@@ -745,13 +749,14 @@ Object.getOwnPropertyDescriptor(this,'a3')
 //	configurable: true
 // }
 
-{% endhighlight %}
+```
 
 上面代码中的`this.a3 = 1`与`a3 = 1`是等价的写法。this指的是当前的作用域，更多关于this的解释，参见《面向对象编程》一章。
 
 这种差异意味着，如果一个变量是使用var命令生成的，就无法用delete命令删除。也就是说，delete只能删除对象的属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var a1 = 1;
 a2 = 1;
@@ -762,13 +767,14 @@ delete a2 // true
 a1 // 1
 a2 // ReferenceError: a2 is not defined
 
-{% endhighlight %}
+```
 
 ### 可写性（writable）
 
 可写性（writable）决定了属性的值（value）是否可以被改变。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {}; 
 
@@ -778,7 +784,7 @@ o.a // 37
 o.a = 25;
 o.a // 37
 
-{% endhighlight %}
+```
 
 上面代码将o对象的a属性可写性设为false，然后改变这个属性的值，就不会有任何效果。
 
@@ -788,7 +794,8 @@ o.a // 37
 
 关于可写性，还有一种特殊情况。就是如果原型对象的某个属性的可写性为false，那么派生对象将无法自定义这个属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var proto = Object.defineProperty({}, 'foo', {
     value: 'a',
@@ -800,17 +807,18 @@ var o = Object.create(proto);
 o.foo = 'b';
 o.foo // 'a'
 
-{% endhighlight %}
+```
 
 上面代码中，对象proto的foo属性不可写，结果proto的派生对象o，也不可以再自定义这个属性了。在严格模式下，这样做还会抛出一个错误。但是，有一个规避方法，就是通过覆盖attributes对象，绕过这个限制，原因是这种情况下，原型链会被完全忽视。
 
-{% highlight javascript %}
+```javascript
+
 
 Object.defineProperty(o, 'foo', { value: 'b' });
 
 o.foo // 'b'
 
-{% endhighlight %}
+```
 
 ### 存取器（accessor）
 
@@ -979,7 +987,8 @@ JavaScript提供了三种方法，精确控制一个对象的读写状态，防�
 
 Object.preventExtensions方法可以使得一个对象无法再添加新的属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = new Object();
 
@@ -991,11 +1000,12 @@ Object.defineProperty(o, "p", { value: "hello" });
 o.p = 1;
 o.p // undefined
 
-{% endhighlight %}
+```
 
 如果是在严格模式下，则会抛出一个错误。
 
-{% highlight javascript %}
+```javascript
+
 
 (function () {
   'use strict';
@@ -1003,11 +1013,12 @@ o.p // undefined
 }());
 // TypeError: Can't add property bar, object is not extensible
 
-{% endhighlight %}
+```
 
 不过，对于使用了preventExtensions方法的对象，可以用delete命令删除它的现有属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = new Object();
 o.p = 1;
@@ -1017,13 +1028,14 @@ Object.preventExtensions(o);
 delete o.p;
 o.p // undefined
 
-{% endhighlight %}
+```
 
 ### Object.isExtensible方法
 
 Object.isExtensible方法用于检查一个对象是否使用了preventExtensions方法。也就是说，该方法可以用来检查是否可以为一个对象添加属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = new Object();
 
@@ -1034,7 +1046,7 @@ Object.preventExtensions(o);
 Object.isExtensible(o)
 // false
 
-{% endhighlight %}
+```
 
 上面代码新生成了一个o对象，对该对象使用Object.isExtensible方法，返回true，表示可以添加新属性。对该对象使用Object.preventExtensions方法以后，再使用Object.isExtensible方法，返回false，表示已经不能添加新属性了。
 
@@ -1042,7 +1054,8 @@ Object.isExtensible(o)
 
 Object.seal方法使得一个对象既无法添加新属性，也无法删除旧属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = { p:"hello" };
 
@@ -1054,11 +1067,12 @@ o.p // "hello"
 o.x = 'world';
 o.x // undefined
 
-{% endhighlight %}
+```
 
 Object.seal还把现有属性的attributes对象的configurable属性设为false，使得attributes对象不再能改变。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = { p: 'a' };
 
@@ -1075,13 +1089,14 @@ Object.getOwnPropertyDescriptor(o, 'p')
 Object.defineProperty(o, 'p', { enumerable: false })
 // TypeError: Cannot redefine property: p
 
-{% endhighlight %}
+```
 
 从上面代码可以看到，使用seal方法之后，attributes对象的configurable就变成了false，然后如果想改变enumerable就会报错。
 
 可写性（writable）有点特别。如果writable为false，使用Object.seal方法以后，将无法将其变成true；但是，如果writable为true，依然可以将其变成false。
 
-{% highlight javascript %}
+```javascript
+
 
 var o1 = Object.defineProperty({}, 'p', {writable: false});
 Object.seal(o1);
@@ -1098,7 +1113,7 @@ Object.getOwnPropertyDescriptor(o2, 'p')
   enumerable: true,
   configurable: false } */
 
-{% endhighlight %}
+```
 
 上面代码中，同样是使用了Object.seal方法，如果writable原为false，改变这个设置将报错；如果原为true，则不会有问题。
 
@@ -1119,18 +1134,20 @@ o.p // 'b'
 
 Object.isSealed方法用于检查一个对象是否使用了Object.seal方法。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = { p: 'a' };
 
 Object.seal(o);
 Object.isSealed(o) // true
 
-{% endhighlight %}
+```
 
 另外，这时isExtensible方法也返回false。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = { p: 'a' };
 
@@ -1143,7 +1160,8 @@ Object.isExtensible(o) // false
 
 Object.freeze方法可以使得一个对象无法添加新属性、无法删除旧属性、也无法改变属性的值，使得这个对象实际上变成了常量。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {p:"hello"};
 
@@ -1155,11 +1173,12 @@ o.p // hello
 o.t = "hello";
 o.t // undefined
 
-{% endhighlight %}
+```
 
 上面代码中，对现有属性重新赋值（o.p = "world"）或者添加一个新属性，并不会报错，只是默默地失败。但是，如果是在严格模式下，就会报错。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {p:"hello"};
 
@@ -1173,26 +1192,28 @@ Object.freeze(o);
 (function () { 'use strict'; o.t = 123;}())
 // TypeError: Can't add property t, object is not extensible
 
-{% endhighlight %}
+```
 
 ### Object.isFrozen方法
 
 Object.isFrozen方法用于检查一个对象是否使用了Object.freeze()方法。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {p:"hello"};
 
 Object.freeze(o);
 Object.isFrozen(o) // true
 
-{% endhighlight %}
+```
 
 ### 局限性
 
 需要注意的是，使用上面这些方法锁定对象的可写性，但是依然可以通过改变该对象的原型对象，来为它增加属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = new Object();
 
@@ -1205,11 +1226,12 @@ proto.t = "hello";
 o.t
 // hello
 
-{% endhighlight %}
+```
 
 一种解决方案是，把原型也冻结住。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = Object.seal(
 			Object.create(Object.freeze({x:1}),
@@ -1219,7 +1241,7 @@ var o = Object.seal(
 Object.getPrototypeOf(o).t = "hello";
 o.hello // undefined
 
-{% endhighlight %}
+```
 
 ## 参考链接
 

@@ -1,11 +1,3 @@
----
-title: Events模块
-layout: page
-category: nodejs
-date: 2014-10-20
-modifiedOn: 2014-10-20
----
-
 ## 概述
 
 ### 基本用法
@@ -42,27 +34,30 @@ f()
 
 默认情况下，Node.js允许同一个事件最多可以指定10个回调函数。
 
-{% highlight javascript %}
+```javascript
+
 
 ee.on("someEvent", function () { console.log("event 1"); });
 ee.on("someEvent", function () { console.log("event 2"); });
 ee.on("someEvent", function () { console.log("event 3"); });
 
-{% endhighlight %}
+```
 
 超过10个回调函数，会发出一个警告。这个门槛值可以通过setMaxListeners方法改变。
 
-{% highlight javascript %}
+```javascript
+
 
 ee.setMaxListeners(20);
 
-{% endhighlight %}
+```
 
 ### emit方法
 
 EventEmitter实例的emit方法，用来触发事件。它的第一个参数是事件名称，其余参数都会依次传入回调函数。
 
-{% highlight javascript %}
+```javascript
+
 
 var EventEmitter = require('events').EventEmitter;
 var myEmitter = new EventEmitter;
@@ -74,13 +69,14 @@ var connection = function(id){
 myEmitter.on('connection', connection);
 myEmitter.emit('connection', 6);
 
-{% endhighlight %}
+```
 
 ## EventEmitter接口的部署
 
 Events模块的作用，还在于其他模块可以部署EventEmitter接口，从而也能够订阅和发布消息。
 
-{% highlight javascript %}
+```javascript
+
 
 var EventEmitter = require('events').EventEmitter;
 
@@ -102,7 +98,7 @@ setInterval(function(){
   simon.emit('bark');
 }, 500);
 
-{% endhighlight %}
+```
 
 上面代码新建了一个构造函数Dog，然后让其继承EventEmitter，因此Dog就拥有了EventEmitter的接口。最后，为Dog的实例指定bark事件的监听函数，再使用EventEmitter的emit方法，触发bark事件。
 
@@ -166,7 +162,8 @@ Events模块默认支持两个事件。
 - newListener事件：添加新的回调函数时触发。
 - removeListener事件：移除回调时触发。
 
-{% highlight javascript %}
+```javascript
+
 
 ee.on("newListener", function (evtName){
   console.log("New Listener: " + evtName);
@@ -185,7 +182,7 @@ ee.removeListener("save-user", foo);
 // New Listener: save-user
 // Removed Listener: save-user
 
-{% endhighlight %}
+```
 
 上面代码会触发两次newListener事件，以及一次removeListener事件。
 
@@ -214,13 +211,14 @@ myEmitter.emit('message', 'welcome to nodejs');
 
 下面代码指定，一旦服务器连通，只调用一次的回调函数。
 
-{% highlight javascript %}
+```javascript
+
 
 server.once('connection', function (stream) {
   console.log('Ah, we have our first user!');
 });
 
-{% endhighlight %}
+```
 
 该方法返回一个EventEmitter对象，因此可以链式加载监听函数。
 
@@ -250,7 +248,8 @@ setTimeout(function(){
 
 另一个例子是使用removeListener方法模拟once方法。
 
-{% highlight javascript %}
+```javascript
+
 
 var EventEmitter = require('events').EventEmitter;
 
@@ -263,13 +262,14 @@ function onlyOnce () {
 
 emitter.on("firstConnection", onlyOnce);
 
-{% endhighlight %}
+```
 
 **（3）removeAllListeners方法**
 
 该方法用于移除某个事件的所有回调函数。
 
-{% highlight javascript %}
+```javascript
+
 
 var EventEmitter = require('events').EventEmitter;
 
@@ -279,21 +279,23 @@ var emitter = new EventEmitter;
 
 emitter.removeAllListeners("firstConnection");
 
-{% endhighlight %}
+```
 
 如果不带参数，则表示移除所有事件的所有回调函数。
 
-{% highlight javascript %}
+```javascript
+
 
 emitter.removeAllListeners();
 
-{% endhighlight %}
+```
 
 **（4）listener方法**
 
 该方法接受一个事件名称作为参数，返回该事件所有回调函数组成的数组。
 
-{% highlight javascript %}
+```javascript
+
 
 var EventEmitter = require('events').EventEmitter;
 
@@ -312,7 +314,7 @@ ee.emit("firstConnection");
 // [ [Function: onlyOnce] ]
 // []
 
-{% endhighlight %}
+```
 
 上面代码显示两次回调函数组成的数组，第一次只有一个回调函数onlyOnce，第二次是一个空数组，因为removeListener方法取消了回调函数。
 

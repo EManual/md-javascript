@@ -1,11 +1,3 @@
----
-title: 运算符
-layout: page
-category: grammar
-date: 2013-02-04
-modifiedOn: 2014-02-04
----
-
 运算符是处理数据的基本方法，用来从现有数据得到新的数据。JavaScript与其他编程语言一样，提供了多种运算符。
 
 ## 算术运算符
@@ -335,20 +327,22 @@ v1 === v2 // true
 
 undefined和null与其他类型的值比较时，结果都为false，它们互相比较时结果为true。
 
-{% highlight javascript %}
+```javascript
+
 
 false == null // false
 0 == null // false
 
 undefined == null // true
 
-{% endhighlight %}
+```
 
 **（4）相等运算符的缺点**
 
 相等运算符隐藏的类型转换，会带来一些违反直觉的结果。
 
-{% highlight javascript %}
+```javascript
+
 
 '' == '0'           // false
 0 == ''             // true
@@ -363,7 +357,7 @@ null == undefined   // true
 
 ' \t\r\n ' == 0     // true
 
-{% endhighlight %}
+```
 
 上面这些表达式都很容易出错，因此不要使用相等运算符（==），最好只使用严格相等运算符（===）。
 
@@ -371,11 +365,12 @@ null == undefined   // true
 
 相等运算符有一个对应的“不相等运算符”（!=），两者的运算结果正好相反。
 
-{% highlight javascript %}
+```javascript
+
 
 1 != "1" // false
 
-{% endhighlight %}
+```
 
 ## 布尔运算符
 
@@ -385,12 +380,13 @@ null == undefined   // true
 
 取反运算符形式上是一个感叹号，用于将布尔值变为相反值，即true变成false，false变成true。
 
-{% highlight javascript %}
+```javascript
+
 
 !true // false
 !false // true
 
-{% endhighlight %}
+```
 
 对于非布尔值的数据，取反运算符会自动将其转为布尔值。规则是，以下六个值取反后为true，其他值取反后都为false。
 
@@ -403,7 +399,8 @@ null == undefined   // true
 
 这意味着，取反运算符有转换数据类型的作用。
 
-{% highlight javascript %}
+```javascript
+
 
 !undefined // true
 !null // true
@@ -416,13 +413,14 @@ null == undefined   // true
 ![] // false
 !{} // false
 
-{% endhighlight %}
+```
 
 上面代码中，不管什么类型的值，经过取反运算后，都变成了布尔值。
 
 如果对一个值连续做两次取反运算，等于将其转为对应的布尔值，与Boolean函数的作用相同。这是一种常用的类型转换的写法。
 
-{% highlight javascript %}
+```javascript
+
 
 !!x
 
@@ -430,7 +428,7 @@ null == undefined   // true
 
 Boolean(x)
 
-{% endhighlight %}
+```
 
 上面代码中，不管x是什么类型的值，经过两次取反运算后，变成了与Boolean函数结果相同的布尔值。所以，两次取反就是将一个值转为布尔值的简便写法。
 
@@ -440,7 +438,8 @@ Boolean(x)
 
 且运算符的运算规则是：如果第一个运算子的布尔值为true，则返回第二个运算子的值（注意是值，不是布尔值）；如果第一个运算子的布尔值为false，则直接返回第一个运算子的值，且不再对第二个运算子求值。
 
-{% highlight javascript %}
+```javascript
+
 
 "t" && "" // ""
 "t" && "f" // "f"
@@ -452,13 +451,14 @@ var x = 1;
 (1-1) && (x+=1) // 0
 x // 1
 
-{% endhighlight %}
+```
 
 上面代码的最后一部分表示，由于且运算符的第一个运算子的布尔值为false，则直接返回它的值0，而不再对第二个运算子求值，所以变量x的值没变。
 
 这种跳过第二个运算子的机制，被称为“短路”。有些程序员喜欢用它取代if结构，比如下面是一段if结构的代码，就可以用且运算符改写。
 
-{% highlight javascript %}
+```javascript
+
 
 if (i !== 0 ){
 	doSomething();
@@ -468,18 +468,19 @@ if (i !== 0 ){
 
 i && doSomething();
 
-{% endhighlight %}
+```
 
 上面代码的两种写法是等价的，但是后一种不容易看出目的，也不容易除错，建议谨慎使用。
 
 且运算符可以多个连用，这时返回第一个布尔值为false的表达式的值。
 
-{% highlight javascript %}
+```javascript
+
 
 true && 'foo' && '' && 4 && 'foo' && true
 // ''
 
-{% endhighlight %}
+```
 
 上面代码中第一个布尔值为false的表达式为第三个表达式，所以得到一个空字符串。
 
@@ -487,31 +488,34 @@ true && 'foo' && '' && 4 && 'foo' && true
 
 或运算符的运算规则是：如果第一个运算子的布尔值为true，则返回第一个运算子的值，且不再对第二个运算子求值；如果第一个运算子的布尔值为false，则返回第二个运算子的值。
 
-{% highlight javascript %}
+```javascript
+
 
 "t" || "" // "t"
 "t" || "f" // "t"
 "" || "f" // "f"
 "" || "" // ""
 
-{% endhighlight %}
+```
 
 短路规则对这个运算符也适用。
 
 或运算符可以多个连用，这时返回第一个布尔值为true的表达式的值。
 
-{% highlight javascript %}
+```javascript
+
 
 false || 0 || '' || 4 || 'foo' || true
 // 4
 
-{% endhighlight %}
+```
 
 上面代码中第一个布尔值为true的表达式是第四个表达式，所以得到数值4。
 
 或运算符常用于为一个变量设置默认值。
 
-{% highlight javascript %}
+```javascript
+
 
 function saveText(text) {
     text = text || '';
@@ -522,7 +526,7 @@ function saveText(text) {
 
 saveText(this.text||'')
 
-{% endhighlight %}
+```
 
 上面代码表示，如果函数调用时，没有提供参数，则该参数默认设置为空字符串。
 
@@ -530,25 +534,27 @@ saveText(this.text||'')
 
 三元条件运算符用问号（？）和冒号（：），分隔三个表达式。如果第一个表达式的布尔值为true，则返回第二个表达式的值，否则返回第三个表达式的值。
 
-{% highlight javascript %}
+```javascript
+
 
 "t" ? true : false // true
 
 0 ? true : false // false
 
-{% endhighlight %}
+```
 
 上面代码的“t”和0的布尔值分别为true和false，所以分别返回第二个和第三个表达式的值。
 
 通常来说，三元条件表达式与if...else语句具有同样表达效果，前者可以表达的，后者也能表达。但是两者具有一个重大差别，if...else是语句，没有返回值；三元条件表达式是表达式，具有返回值。所以，在需要返回值的场合，只能使用三元条件表达式，而不能使用if..else。
 
-{% highlight javascript %}
+```javascript
+
 
 var check = true ? console.log('T') : console.log('F');
 
 console.log(true ? 'T' : 'F');
 
-{% endhighlight %}
+```
 
 上面代码是赋值语句和console.log方法的例子，它们都需要使用表达式，这时三元条件表达式就能满足需要。如果要用if...else语句，就必须改变整个代码写法了。
 
@@ -576,11 +582,12 @@ console.log(true ? 'T' : 'F');
 
 有一点需要特别注意，位运算符只对整数起作用，如果一个运算子不是整数，会自动转为整数后再运行。另外，虽然在JavaScript内部，数值都是以64位浮点数的形式储存，但是做位运算的时候，是以32位带符号的整数进行运算的，并且返回值也是一个32位带符号的整数。
 
-{% highlight javascript %}
+```javascript
+
 
 i = i|0;
 
-{% endhighlight %}
+```
 
 上面这行代码的意思，就是将i转为32位整数。
 
@@ -588,18 +595,20 @@ i = i|0;
 
 这两种运算比较容易理解，就是逐位比较两个运算子。“或运算”的规则是，如果两个二进制位之中至少有一个位为1，则返回1，否则返回0。“与运算”的规则是，如果两个二进制位之中至少有一个位1为0，则返回0，否则返回1。
 
-{% highlight javascript %}
+```javascript
+
 
 0 | 3 // 3
 0 & 3 // 0
 
-{% endhighlight %}
+```
 
 上面两个表达式，0和3的二进制形式分别是00和11，所以进行“或运算”会得到11（即3），进行”与运算“会得到00（即0）。
 
 位运算只对整数有效，遇到小数时，会将小数部分舍去，只保留整数部分。所以，将一个小数与0进行或运算，等同于对该数去除小数部分，即取整数位。
 
-{% highlight javascript %}
+```javascript
+
 
 2.9 | 0
 // 2
@@ -607,53 +616,58 @@ i = i|0;
 -2.9 | 0
 // -2
 
-{% endhighlight %}
+```
 
 需要注意的是，这种取整方法不适用超过32位整数最大值2147483647的数。
 
-{% highlight javascript %}
+```javascript
+
 
 2147483649.4 | 0;
 // -2147483647
 
-{% endhighlight %}
+```
 
 ### 否运算
 
 “否运算”将每个二进制位都变为相反值（0变为1，1变为0）。它的返回结果有时比较难理解，因为涉及到计算机内部的数值表示机制。
 
-{% highlight javascript %}
+```javascript
+
 
 ~ 3 // -4
 
-{% endhighlight %}
+```
 
 上面表达式对3进行“否运算”，得到-4。之所以会有这样的结果，是因为位运算时，JavaScirpt内部将所有的运算子都转为32位的二进制整数再进行运算。3在JavaScript内部是00000000000000000000000000000011，否运算以后得到11111111111111111111111111111100，由于第一位是1，所以这个数是一个负数。JavaScript内部采用2的补码形式表示负数，即需要将这个数减去1，再取一次反，然后加上负号，才能得到这个负数对应的10进制值。这个数减去1等于11111111111111111111111111111011，再取一次反得到00000000000000000000000000000100，再加上负号就是-4。考虑到这样的过程比较麻烦，可以简单记忆成，一个数与自身的取反值相加，等于-1。
 
-{% highlight javascript %}
+```javascript
+
 
 ~ -3 // 2
 
-{% endhighlight %}
+```
 
 上面表达式可以这样算，-3的取反值等于-1减去-3，结果为2。
 
 对一个整数连续两次“否运算”，得到它自身。
 
-{% highlight javascript %}
+```javascript
+
 
 ~~3 // 3
 
-{% endhighlight %}
+```
 
 所有的位运算都只对整数有效。否运算遇到小数时，也会将小数部分舍去，只保留整数部分。所以，对一个小数连续进行两次否运算，能达到取整效果。
 
-{% highlight javascript %}
+```javascript
+
 
 ~~2.9
 // 2
 
-{% endhighlight %}
+```
 
 使用否运算取整，是所有取整方法中最快的一种。
 
@@ -681,17 +695,19 @@ Number函数将字符串转为数值的规则，参见《数据的类型转换�
 
 “异或运算”在两个二进制位不同时返回1，相同时返回0。
 
-{% highlight javascript %}
+```javascript
+
 
 0^3 // 3
 
-{% endhighlight %}
+```
 
 上面表达式中，0的二进制形式是00，3的二进制形式是11，它们每一个二进制位都不同，所以得到11（即3）。
 
 “异或运算”有一个特殊运用，连续对两个数a和b进行三次异或运算，a&#710;=b, b&#710;=a, a&#710;=b，可以互换它们的值（详见[维基百科](http://en.wikipedia.org/wiki/XOR_swap_algorithm)）。这意味着，使用“异或运算”可以在不引入临时变量的前提下，互换两个变量的值。
 
-{% highlight javascript %}
+```javascript
+
 
 var a = 10;
 var b = 99;
@@ -701,7 +717,7 @@ a^=b, b^=a, a^=b;
 a // 99
 b // 10
 
-{% endhighlight %}
+```
 
 这是互换两个变量的值的最快方法。
 
@@ -717,7 +733,8 @@ b // 10
 
 左移运算符表示将一个数的二进制形式向前移动，尾部补0。
 
-{% highlight javascript %}
+```javascript
+
 
 4 << 1
 // 8
@@ -726,7 +743,7 @@ b // 10
 -4 << 1
 // -8
 
-{% endhighlight %}
+```
 
 上面代码中，-4左移一位之所以得到-8，是因为-4的二进制形式是11111111111111111111111111111100，左移一位后得到11111111111111111111111111111000，该数转为十进制（减去1后取反，再加上负号）即为-8。
 
@@ -744,7 +761,8 @@ b // 10
 
 左移运算符用于二进制数值非常方便。
 
-{% highlight javascript %}
+```javascript
+
 
 var color = {r: 186, g: 218, b: 85};
 
@@ -756,7 +774,7 @@ var rgb2hex = function(r, g, b) {
 rgb2hex(color.r,color.g,color.b)
 // "#bada55"
 
-{% endhighlight %}
+```
 
 上面代码使用左移运算符，将颜色的RGB值转为HEX值。
 
@@ -821,70 +839,77 @@ rgb2hex(color.r,color.g,color.b)
 
 假定某个对象有四个开关，每个开关都是一个变量，取值为2的整数次幂。
 
-{% highlight javascript %}
+```javascript
+
 
 var FLAG_A = 1; // 0001
 var FLAG_B = 2; // 0010
 var FLAG_C = 4; // 0100
 var FLAG_D = 8; // 1000
 
-{% endhighlight %}
+```
 
 上面代码设置A、B、C、D四个开关，每个开关分别占有1个二进制位。
 
 现在假设需要打开ABD三个开关，我们可以构造一个掩码变量。
 
-{% highlight javascript %}
+```javascript
+
 
 var mask = FLAG_A | FLAG_B | FLAG_D; // 0001 | 0010 | 1000 => 1011
 
-{% endhighlight %}
+```
 
 上面代码对ABD三个变量进行“或运算”，得到掩码值为二进制的1011。
 
 有了掩码，就可以用“与运算”检验当前设置是否与开关设置一致。
 
-{% highlight javascript %}
+```javascript
+
 
 if (flags & FLAG_C) { // 0101 & 0100 => 0100 => true
    // ...
 }
 
-{% endhighlight %}
+```
 
 上面代码表示，如果当前设置与掩码一致，则返回true，否则返回false。
 
 “或运算”可以将当前设置改成开关设置。
 
-{% highlight javascript %}
+```javascript
+
 
 flags |= mask; 
 
-{% endhighlight %}
+```
 
 “与运算”可以将当前设置中凡是与开关设置不一样的项，全部关闭。
 
-{% highlight javascript %}
+```javascript
+
 
 flags &= mask; 
 
-{% endhighlight %}
+```
 
 “异或运算”可以切换（toggle）当前设置。
 
-{% highlight javascript %}
+```javascript
+
 
 flags = flags ^ mask; 
 
-{% endhighlight %}
+```
 
 “否运算”可以翻转当前设置。
 
-{% highlight javascript %}
+```javascript
+
 
 flags = ~flags;
 
-{% endhighlight %}
+```
 
 ## 其他运算符
 
@@ -894,46 +919,50 @@ flags = ~flags;
 
 把表达式放在圆括号之中，将返回表达式的值。
 
-{% highlight javascript %}
+```javascript
+
 
 (1) // 1
 ('a') // a
 (1+2) // 3
 
-{% endhighlight %}
+```
 
 把对象放在圆括号之中，则会返回对象的值，即对象本身。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {p:1};
 
 (o)
 // Object {p: 1}
 
-{% endhighlight %}
+```
 
 将函数放在圆括号中，会返回函数本身。如果圆括号紧跟在函数的后面，就表示调用函数，即对函数求值。
 
-{% highlight javascript %}
+```javascript
+
 
 function f(){return 1;}
 
 (f) // function f(){return 1;}
 f() // 1
 
-{% endhighlight %}
+```
 
 上面的代码先定义了一个函数，然后依次将函数放在圆括号之中、将圆括号跟在函数后面，得到的结果是不一样的。
 
 由于圆括号的作用是求值，如果将语句放在圆括号之中，就会报错，因为语句没有返回值。
 
-{% highlight javascript %}
+```javascript
+
 
 (var a =1)
 // SyntaxError: Unexpected token var
 
-{% endhighlight %}
+```
 
 ### void运算符
 
@@ -1002,7 +1031,8 @@ function f() {
 
 逗号运算符用于对两个表达式求值，并返回后一个表达式的值。
 
-{% highlight javascript %}
+```javascript
+
 
 "a", "b" // "b"
 
@@ -1011,7 +1041,7 @@ var y = (x++, 10);
 x // 1
 y // 10
 
-{% endhighlight %}
+```
 
 ## 运算顺序
 

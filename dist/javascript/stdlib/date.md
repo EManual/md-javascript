@@ -1,11 +1,3 @@
----
-title: Date对象
-layout: page
-category: stdlib
-date: 2013-09-03
-modifiedOn: 2014-01-05
----
-
 ## 概述
 
 `Date`对象是JavaScript提供的日期和时间的操作接口。它有多种用法。

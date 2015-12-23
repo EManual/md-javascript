@@ -1,11 +1,3 @@
----
-title: Array 对象
-layout: page
-category: stdlib
-date: 2013-05-04
-modifiedOn: 2013-11-29
----
-
 ## 概述
 
 `Array`是JavaScript的内置对象，同时也是一个构造函数，可以用它生成新的数组。
@@ -637,20 +629,22 @@ reduce方法的第一个参数是一个处理函数。该函数接受四个参�
 
 这四个参数之中，只有前两个是必须的，后两个则是可选的。
 
-{% highlight javascript %}
+```javascript
+
 
 [1, 2, 3, 4, 5].reduce(function(x, y){
     return x+y;
 });
 // 15
 
-{% endhighlight %}
+```
 
 上面代码的参数x表示累计变量，默认为0，y则是数组的当前元素。reduce方法依次将每个数组元素加入x，最终返回它们的总和15。
 
 利用reduce方法，可以写一个数组求和的sum方法。
 
-{% highlight javascript %}
+```javascript
+
 
 Array.prototype.sum = function (){
     return this.reduce(function (partial, value){
@@ -661,24 +655,26 @@ Array.prototype.sum = function (){
 [3,4,5,6,10].sum()
 // 28
 
-{% endhighlight %}
+```
 
 如果要对累计变量指定初值，可以把它放在reduce方法的第二个参数。
 
-{% highlight javascript %}
+```javascript
+
 
 [1, 2, 3, 4, 5].reduce(function(x, y){
   return x+y;
 }, 10);
 // 25
 
-{% endhighlight %}
+```
 
 上面代码指定参数x的初值为10，所以数组元素从10开始累加，最终结果为25。
 
 由于reduce方法依次处理每个元素，所以实际上还可以用它来搜索某个元素。比如，下面代码是找出长度最长的数组元素。
 
-{% highlight javascript %}
+```javascript
+
 
 function findLongest(entries) {
   return entries.reduce(function (longest, entry) {
@@ -686,7 +682,7 @@ function findLongest(entries) {
   }, '');
 }
 
-{% endhighlight %}
+```
 
 ### indexOf 和 lastIndexOf
 
@@ -709,7 +705,8 @@ indexOf方法还可以接受第二个参数，表示搜索的开始位置。
 
 `lastIndexOf`方法返回给定元素在数组中最后一次出现的位置，如果没有出现则返回-1。
 
-{% highlight javascript %}
+```javascript
+
 
 var a = [2, 5, 9, 2];
 
@@ -719,7 +716,7 @@ a.lastIndexOf(2)
 a.lastIndexOf(7)
 // -1
 
-{% endhighlight %}
+```
 
 注意，如果数组中包含NaN，这两个方法不适用。
 
@@ -736,7 +733,8 @@ a.lastIndexOf(7)
 
 上面这些数组方法之中，有不少返回的还是数组，所以可以链式使用。
 
-{% highlight javascript %}
+```javascript
+
 
 var users = [{name:"tom", email:"tom@example.com"},
 			 {name:"peter", email:"peter@example.com"}];
@@ -747,7 +745,7 @@ users
 .forEach(alert);
 // 弹出tom@example.com
 
-{% endhighlight %}
+```
 
 ## 参考链接
 

@@ -1,11 +1,3 @@
----
-title: JavaScript模块化编程
-layout: page
-category: oop
-date: 2014-04-06
-modifiedOn: 2014-04-06
----
-
 随着网站逐渐变成"互联网应用程序"，嵌入网页的JavaiScript代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试等等......开发者不得不使用软件工程的方法，管理网页的业务逻辑。
 
 JavaScript模块化编程，已经成为一个迫切的需求。理想情况下，开发者只需要实现核心的业务逻辑，其他都可以加载别人已经写好的模块。
@@ -60,7 +52,8 @@ module1._count = 5;
 
 可以利用构造函数，封装私有变量。
 
-{% highlight javascript %}
+```javascript
+
 
 function StringBuilder() {
   var buffer = [];
@@ -75,11 +68,12 @@ function StringBuilder() {
 
 }
 
-{% endhighlight %}
+```
 
 这种方法将私有变量封装在构造函数中，违反了构造函数与实例对象相分离的原则。并且，非常耗费内存。
 
-{% highlight javascript %}
+```javascript
+
 
 function StringBuilder() {
   this._buffer = [];
@@ -95,7 +89,7 @@ StringBuilder.prototype = {
   }
 };
 
-{% endhighlight %}
+```
 
 这种方法将私有变量放入实例对象中，好处是看上去更自然，但是它的私有变量可以从外部读写，不是很安全。
 

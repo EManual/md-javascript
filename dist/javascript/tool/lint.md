@@ -1,11 +1,3 @@
----
-title: Lint 工具
-layout: page
-category: tool
-date: 2015-11-11
-modifiedOn: 2015-11-11
----
-
 # Lint工具
 
 ## 概述

@@ -1,11 +1,3 @@
----
-layout: page
-title: PhantomJS
-date: 2012-12-08
-category: tool
-modifiedOn: 2013-08-07
----
-
 ## 概述
 
 有时，我们需要浏览器处理网页，但并不需要浏览，比如生成网页的截图、抓取网页数据等操作。[PhantomJS](http://phantomjs.org/)的功能，就是提供一个浏览器环境的命令行接口，你可以把它看作一个“虚拟浏览器”，除了不能浏览，其他与正常浏览器一样。它的内核是WebKit引擎，不提供图形界面，只能在命令行下使用，我们可以用它完成一些特殊的用途。
@@ -315,7 +307,8 @@ page.onResourceReceived = function(response) {
 
 system模块可以加载操作系统变量，system.args就是参数数组。
 
-{% highlight javascript %}
+```javascript
+
 
 var page = require('webpage').create(),
     system = require('system'),
@@ -339,7 +332,7 @@ page.open(address, function (status) {
     phantom.exit();
 });
 
-{% endhighlight %}
+```
 
 使用方法如下：
 
@@ -372,7 +365,8 @@ page.onResourceRequested = function(requestData, request) {
 
 最简单的生成网页截图的方法如下。
 
-{% highlight javascript %}
+```javascript
+
 
 var page = require('webpage').create();
 page.open('http://google.com', function () {
@@ -380,13 +374,14 @@ page.open('http://google.com', function () {
     phantom.exit();
 });
 
-{% endhighlight %}
+```
 
 page对象代表一个网页实例；open方法表示打开某个网址，它的第一个参数是目标网址，第二个参数是网页载入成功后，运行的回调函数;render方法则是渲染页面，然后以图片格式输出，该方法的参数就是输出的图片文件名。
 
 除了简单截图以外，还可以设置各种截图参数。
 
-{% highlight javascript %}
+```javascript
+
 
 var page = require('webpage').create();
 page.open('http://google.com', function () {
@@ -395,13 +390,14 @@ page.open('http://google.com', function () {
     phantom.exit();
 });
 
-{% endhighlight %}
+```
 
 zoomFactor表示将截图缩小至原图的25%大小；renderBase64方法则是表示将截图（PNG格式）编码成Base64格式的字符串输出。
 
 下面的例子则是使用了更多参数。
 
-{% highlight javascript %}
+```javascript
+
 
 // page.js
 
@@ -431,7 +427,7 @@ page.open('http://slashdot.org', function (status) {
   }
 });
 
-{% endhighlight %}
+```
 
 上面代码中的几个属性和方法解释如下：
 
@@ -445,32 +441,35 @@ page.open('http://slashdot.org', function (status) {
 
 使用官方网站提供的[rasterize.js](https://github.com/ariya/phantomjs/blob/master/examples/rasterize.js)，可以抓取网络上的图片，将起保存在本地。
 
-{% highlight javascript %}
+```javascript
+
 
 phantomjs rasterize.js http://ariya.github.com/svg/tiger.svg tiger.png
 
-{% endhighlight %}
+```
 
 使用[rasterize.js](https://github.com/ariya/phantomjs/blob/master/examples/rasterize.js)，还可以将网页保存为pdf文件。
 
-{% highlight javascript %}
+```javascript
+
 
 phantomjs rasterize.js 'http://en.wikipedia.org/w/index.php?title=Jakarta&printable=yes' jakarta.pdf
 
-{% endhighlight %}
+```
 
 ### 生成网页
 
 phantomjs可以生成网页，使用content方法指定网页的HTML代码。
 
-{% highlight javascript %}
+```javascript
+
 
 var page = require('webpage').create();
 page.viewportSize = { width: 400, height : 400 };
 page.content = '<html><body><canvas id="surface"></canvas></body></html>';
 phantom.exit();
 
-{% endhighlight %}
+```
 
 官方网站有一个[例子](https://github.com/ariya/phantomjs/blob/master/examples/colorwheel.js)，通过创造svg图片，然后截图保存成png文件。
 

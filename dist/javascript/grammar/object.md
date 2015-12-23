@@ -1,11 +1,3 @@
----
-title: 对象
-layout: page
-category: grammar
-date: 2012-12-12
-modifiedOn: 2014-01-17
----
-
 ## 概述
 
 ### 定义方法
@@ -118,13 +110,14 @@ obj.m2.name // undefined
 
 对象的生成方法，通常有三种方法。除了像上面那样直接使用大括号生成（{}），还可以用new命令生成一个Object对象的实例，或者使用Object.create方法生成。
 
-{% highlight javascript %}
+```javascript
+
 
 var o1 = {};
 var o2 = new Object();
 var o3 = Object.create(null);
 
-{% endhighlight %}
+```
 
 上面三行语句是等价的。一般来说，第一种采用大括号的写法比较简洁，第二种采用构造函数的写法清晰地表示了意图，第三种写法一般用在需要对象继承的场合。关于第二种写法，详见《标准库》一章的Object对象一节，第三种写法详见《面向对象编程》一章。
 
@@ -191,13 +184,14 @@ if(window['a']) {...} // 不报错
 
 需要注意的是，后二种写法有漏洞，如果a属性是一个空字符串（或其他对应的布尔值为false的情况），则无法起到检查变量是否声明的作用。正确的写法是使用in运算符。
 
-{% highlight javascript %}
+```javascript
+
 
 if('a' in window) {
   ...
 }
 
-{% endhighlight %}
+```
 
 **（3）写入属性**
 
@@ -212,7 +206,8 @@ o['p'] = 'abc';
 
 JavaScript允许属性的“后绑定”，也就是说，你可以在任意时刻新增属性，没必要在定义对象的时候，就定义好属性。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = { p:1 };
 
@@ -221,7 +216,7 @@ var o = { p:1 };
 var o = {};
 o.p = 1;
 
-{% endhighlight %}
+```
 
 **（4）查看所有属性**
 
@@ -263,7 +258,8 @@ delete o.p // true
 
 只有一种情况，delete命令会返回false，那就是该属性存在，且不得删除。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = Object.defineProperty({}, "p", {
         value: 123,
@@ -273,7 +269,7 @@ var o = Object.defineProperty({}, "p", {
 o.p // 123
 delete o.p // false
 
-{% endhighlight %}
+```
 
 上面代码之中，o对象的p属性是不能删除的，所以delete命令返回false（关于Object.defineProperty方法的介绍，请看《标准库》一章的Object对象章节）。
 
@@ -283,7 +279,8 @@ delete o.p // false
 
 如果不同的变量名指向同一个对象，那么它们都是这个对象的引用，也就是说指向同一个内存地址。修改其中一个变量，会影响到其他所有变量。
 
-{% highlight javascript %}
+```javascript
+
 
 var o1 = {};
 var o2 = o1;
@@ -294,13 +291,14 @@ o2.a // 1
 o2.b = 2;
 o1.b // 2
 
-{% endhighlight %}
+```
 
 上面代码之中，o1和o2指向同一个对象，因此为其中任何一个变量添加属性，另一个变量都可以读写该属性。
 
 但是，这种引用只局限于对象，对于原始类型的数据则是传值引用，也就是说，都是值的拷贝。
 
-{% highlight javascript %}
+```javascript
+
 
 var x = 1;
 var y = x;
@@ -308,7 +306,7 @@ var y = x;
 x = 2;
 y // 1
 
-{% endhighlight %}
+```
 
 上面的代码中，当x的值发生变化后，y的值并不变，这就表示y和x并不是指向同一个内存地址。
 
@@ -392,7 +390,8 @@ for (var key in person) {
 
 如果只想遍历对象本身的属性，可以使用hasOwnProperty方法，在循环内部做一个判断。
 
-{% highlight javascript %}
+```javascript
+
 
 for (var key in person) {
     if (person.hasOwnProperty(key)) {
@@ -401,7 +400,7 @@ for (var key in person) {
 }
 // name
 
-{% endhighlight %}
+```
 
 为了避免这一点，可以新建一个继承null的对象。由于null没有任何属性，所以新对象也就不会有继承的属性了。
 
@@ -409,16 +408,18 @@ for (var key in person) {
 
 with语句的格式如下：
 
-{% highlight javascript %}
+```javascript
+
 
 with (object)
   statement
 
-{% endhighlight %}
+```
 
 它的作用是操作同一个对象的多个属性时，提供一些书写的方便。
 
-{% highlight javascript %}
+```javascript
+
 
 // 例一
 with (o) {
@@ -444,11 +445,12 @@ console.log(document.links[0].href);
 console.log(document.links[0].title);
 console.log(document.links[0].style);
 
-{% endhighlight %}
+```
 
 注意，with区块内部的变量，必须是当前对象已经存在的属性，否则会创造一个当前作用域的全局变量。这是因为with区块没有改变作用域，它的内部依然是当前作用域。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {};
 
@@ -462,11 +464,12 @@ o.x
 x
 // "abc"
 
-{% endhighlight %}
+```
 
 上面代码中，对象o没有属性x，所以with区块内部对x的操作，等于创造了一个全局变量x。正确的写法应该是，先定义对象o的属性x，然后在with区块内操作它。
 
-{% highlight javascript %}
+```javascript
+
 
 var o = {};
 
@@ -479,21 +482,23 @@ with (o){
 o.x
 // 2
 
-{% endhighlight %}
+```
 
 这是with语句的一个很大的弊病，就是绑定对象不明确。
 
-{% highlight javascript %}
+```javascript
+
 
 with (o) {
   console.log(x);
 }
 
-{% endhighlight %}
+```
 
 单纯从上面的代码块，根本无法判断x到底是全局变量，还是o对象的一个属性。这非常不利于代码的除错和模块化，编译器也无法对这段代码进行优化，只能留到运行时判断，这就拖慢了运行速度。因此，建议不要使用with语句，可以考虑用一个临时变量代替with。
 
-{% highlight javascript %}
+```javascript
+
 
 with(o1.o2.o3) {
   console.log(p1 + p2);
@@ -504,7 +509,7 @@ with(o1.o2.o3) {
 var temp = o1.o2.o3;
 console.log(temp.p1 + temp.p2);
 
-{% endhighlight %}
+```
 
 with语句少数有用场合之一，就是替换模板变量。
 

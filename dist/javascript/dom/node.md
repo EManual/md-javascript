@@ -1,11 +1,3 @@
----
-title: Node节点
-layout: page
-category: dom
-date: 2013-10-07
-modifiedOn: 2014-05-18
----
-
 ## DOM的概念
 
 DOM是文档对象模型（Document Object Model）的简称，它的基本思想是把结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点组成一个树状结构（DOM Tree）。所有的节点和最终的树状结构，都有规范的对外接口，以达到使用编程语言操作文档的目的（比如增删内容）。所以，DOM可以理解成文档（HTML文档、XML文档和SVG文档）的编程接口。
@@ -191,11 +183,12 @@ nodeValue属性返回或设置当前节点的值，格式为字符串。但是�
 
 childNodes属性返回一个NodeList集合，成员包括当前节点的所有子节点。注意，除了HTML元素节点，该属性返回的还包括Text节点和Comment节点。如果当前节点不包括任何子节点，则返回一个空的NodeList集合。由于NodeList对象是一个动态集合，一旦子节点发生变化，立刻会反映在返回结果之中。
 
-{% highlight javascript %}
+```javascript
+
 
 var ulElementChildNodes = document.querySelector('ul').childNodes;
 
-{% endhighlight %}
+```
 
 **（2）firstNode**
 
@@ -228,12 +221,13 @@ baseURI属性返回一个字符串，由当前网页的协议、域名和所在�
 
 appendChild方法接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点。
 
-{% highlight javascript %}
+```javascript
+
 
 var p = document.createElement("p");
 document.body.appendChild(p);
 
-{% endhighlight %}
+```
 
 如果参数节点是文档中现有的其他节点，appendChild方法会将其从原来的位置，移动到新位置。
 
@@ -284,11 +278,12 @@ DOMComb(document.body, printContent);
 
 cloneNode方法用于克隆一个节点。它接受一个布尔值作为参数，表示是否同时克隆子节点，默认是false，即不克隆子节点。
 
-{% highlight javascript %}
+```javascript
+
 
 var cloneUL = document.querySelector('ul').cloneNode(true);
 
-{% endhighlight %}
+```
 
 需要注意的是，克隆一个节点，会拷贝该节点的所有属性，但是会丧失addEventListener方法和on-属性（即`node.onclick = fn`），添加在这个节点上的事件回调函数。
 
@@ -298,7 +293,8 @@ var cloneUL = document.querySelector('ul').cloneNode(true);
 
 insertBefore方法用于将某个节点插入当前节点的指定位置。它接受两个参数，第一个参数是所要插入的节点，第二个参数是当前节点的一个子节点，新的节点将插在这个节点的前面。该方法返回被插入的新节点。
 
-{% highlight javascript %}
+```javascript
+
 
 var text1 = document.createTextNode('1');
 var li = document.createElement('li');
@@ -307,7 +303,7 @@ li.appendChild(text1);
 var ul = document.querySelector('ul');
 ul.insertBefore(li,ul.firstChild);
 
-{% endhighlight %}
+```
 
 上面代码在ul节点的最前面，插入一个新建的li节点。
 
@@ -333,12 +329,13 @@ parentDiv.insertBefore(s1, s2.nextSibling);
 
 removeChild方法接受一个子节点作为参数，用于从当前节点移除该节点。它返回被移除的节点。
 
-{% highlight javascript %}
+```javascript
+
 
 var divA = document.getElementById('A');
 divA.parentNode.removeChild(divA);
 
-{% endhighlight %}
+```
 
 上面代码是如何移除一个指定节点。
 
@@ -363,14 +360,15 @@ replacedNode = parentNode.replaceChild(newChild, oldChild);
 
 下面是一个例子。
 
-{% highlight javascript %}
+```javascript
+
 
 var divA = document.getElementById('A');
 var newSpan = document.createElement('span');
 newSpan.textContent = 'Hello World!';
 divA.parentNode.replaceChild(newSpan,divA);
 
-{% endhighlight %}
+```
 
 上面代码是如何替换指定节点。
 
@@ -382,11 +380,12 @@ divA.parentNode.replaceChild(newSpan,divA);
 
 contains方法接受一个节点作为参数，返回一个布尔值，表示参数节点是否为当前节点的后代节点。
 
-{% highlight javascript %}
+```javascript
+
 
 document.body.contains(node)
 
-{% endhighlight %}
+```
 
 上面代码检查某个节点，是否包含在当前文档之中。
 
@@ -457,14 +456,15 @@ nodeA.before(nodeB)
 
 isEqualNode方法返回一个布尔值，用于检查两个节点是否相等。所谓相等的节点，指的是两个节点的类型相同、属性相同、子节点相同。
 
-{% highlight javascript %}
+```javascript
+
 
 var targetEl = document.getElementById("targetEl");
 var firstDiv = document.getElementsByTagName("div")[0];
 
 targetEl.isEqualNode(firstDiv)
 
-{% endhighlight %}
+```
 
 ### normalize()
 
@@ -769,11 +769,12 @@ Element对象也部署了document对象的4个选择子元素的方法，而且�
 
 上面四个方法只用于选择Element对象的子节点。因此，可以采用链式写法来选择子节点。
 
-{% highlight javascript %}
+```javascript
+
 
 document.getElementById('header').getElementsByClassName('a')
 
-{% endhighlight %}
+```
 
 各大浏览器对这四个方法都支持良好，IE的情况如下：IE 6开始支持getElementsByTagName，IE 8开始支持querySelector和querySelectorAll，IE 9开始支持getElementsByClassName。
 
@@ -781,11 +782,12 @@ document.getElementById('header').getElementsByClassName('a')
 
 该方法用于选择在指定坐标的最上层的Element对象。
 
-{% highlight javascript %}
+```javascript
+
 
 document.elementFromPoint(50,50)
 
-{% endhighlight %}
+```
 
 上面代码了选中在(50,50)这个坐标的最上层的那个HTML元素。
 
@@ -800,11 +802,12 @@ document.elementFromPoint(50,50)
 
 该方法返回一个布尔值，表示Element对象是否符合某个CSS选择器。
 
-{% highlight javascript %}
+```javascript
+
 
 document.querySelector('li').matchesSelector('li:first-child')
 
-{% endhighlight %}
+```
 
 这个方法需要加上浏览器前缀，需要写成mozMatchesSelector()、webkitMatchesSelector()、oMatchesSelector()、msMatchesSelector()。
 
@@ -833,7 +836,8 @@ document.getElementById('my-span').focus();
 
 下面是使用JavaScript生成表格的一个例子。
 
-{% highlight javascript %}
+```javascript
+
 
 var table = document.createElement('table');
 var tbody = document.createElement('tbody');
@@ -855,7 +859,7 @@ table.caption.appendChild(document.createTextNode('A DOM-Generated Table'));
 
 document.body.appendChild(table);
 
-{% endhighlight %}
+```
 
 这些代码相当易读，其中需要注意的就是insertRow和insertCell方法，接受一个表示位置的参数（从0开始的整数）。
 

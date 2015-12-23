@@ -1,11 +1,3 @@
----
-title: 继承
-layout: page
-date: 2012-12-12
-modifiedOn: 2013-05-04
-category: oop
----
-
 ## 概述
 
 JavaScript的所有对象，都有自己的继承链。也就是说，每个对象都继承另一个对象，该对象称为“原型”（prototype）对象。只有`null`除外，它没有自己的原型对象。

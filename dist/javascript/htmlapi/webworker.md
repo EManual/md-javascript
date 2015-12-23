@@ -1,11 +1,3 @@
----
-title: Web Worker
-layout: page
-category: htmlapi
-date: 2013-01-25
-modifiedOn: 2013-08-10
----
-
 ## 概述
 
 JavaScript语言采用的是单线程模型，也就是说，所有任务排成一个队列，一次只能做一件事。随着电脑计算能力的增强，这一点带来很大的不便，无法充分发挥JavaScript的潜力。尤其考虑到，File API允许JavaScript读取本地文件，就更是如此了。

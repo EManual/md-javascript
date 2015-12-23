@@ -1,11 +1,3 @@
----
-title: 错误处理机制
-layout: page
-category: grammar
-date: 2013-08-30
-modifiedOn: 2013-12-07
----
-
 ## Error对象
 
 一旦代码解析或运行时发生错误，JavaScript引擎就会自动产生并抛出一个Error对象的实例，然后整个程序就中断在发生错误的地方。
@@ -58,7 +50,8 @@ Error对象是最一般的错误类型，在它的基础上，JavaScript还定�
 
 SyntaxError是解析代码时发生的语法错误。
 
-{% highlight javascript %}
+```javascript
+
 
 // 变量名错误
 var 1a;
@@ -66,18 +59,19 @@ var 1a;
 // 缺少括号
 console.log 'hello');
 
-{% endhighlight %}
+```
 
 **（2）ReferenceError**
 
 ReferenceError是引用一个不存在的变量时发生的错误。
 
-{% highlight javascript %}
+```javascript
+
 
 unknownVariable
 // ReferenceError: unknownVariable is not defined
 
-{% endhighlight %}
+```
 
 
 另一种触发场景是，将一个值分配给无法分配的对象，比如对函数的运行结果或者this赋值。
@@ -98,7 +92,8 @@ this = 1
 
 RangeError是当一个值超出有效范围时发生的错误。主要有几种情况，一是数组长度为负数，二是Number对象的方法参数超出范围，以及函数堆栈超过最大值。
 
-{% highlight javascript %}
+```javascript
+
 
 new Array(-1)
 // RangeError: Invalid array length
@@ -106,13 +101,14 @@ new Array(-1)
 (1234).toExponential(21)
 // RangeError: toExponential() argument must be between 0 and 20 
 
-{% endhighlight %}
+```
 
 **（4）TypeError**
 
 TypeError是变量或参数不是预期类型时发生的错误。比如，对字符串、布尔值、数值等原始类型的值使用new命令，就会抛出这种错误，因为new命令的参数应该是一个构造函数。
 
-{% highlight javascript %}
+```javascript
+
 
 new 123
 //TypeError: number is not a func
@@ -121,7 +117,7 @@ var obj = {};
 obj.unknownMethod()
 // TypeError: undefined is not a function 
 
-{% endhighlight %}
+```
 
 上面代码的第二种情况，调用对象不存在的方法，会抛出TypeError错误。
 
@@ -129,12 +125,13 @@ obj.unknownMethod()
 
 URIError是URI相关函数的参数不正确时抛出的错误，主要涉及encodeURI()、decodeURI()、encodeURIComponent()、decodeURIComponent()、escape()和unescape()这六个函数。
 
-{% highlight javascript %}
+```javascript
+
 
 decodeURI('%2')
 // URIError: URI malformed
 
-{% endhighlight %}
+```
 
 **（6）EvalError**
 
@@ -142,13 +139,14 @@ eval函数没有被正确执行时，会抛出EvalError错误。该错误类型�
 
 以上这6种派生错误，连同原始的Error对象，都是构造函数。开发者可以使用它们，人为生成错误对象的实例。
 
-{% highlight javascript %}
+```javascript
+
 
 new Error("出错了！");
 new RangeError("出错了，变量超出有效范围！");
 new TypeError("出错了，变量类型无效！");
 
-{% endhighlight %}
+```
 
 上面代码表示新建错误对象的实例，实质就是手动抛出错误。可以看到，错误对象的构造函数接受一个参数，代表错误提示信息（message）。
 
@@ -156,7 +154,8 @@ new TypeError("出错了，变量类型无效！");
 
 除了JavaScript内建的7种错误对象，还可以定义自己的错误对象。
 
-{% highlight javascript %}
+```javascript
+
 
 function UserError(message) {
    this.message = message || "默认信息";
@@ -166,15 +165,16 @@ function UserError(message) {
 UserError.prototype = new Error();
 UserError.prototype.constructor = UserError;
 
-{% endhighlight %}
+```
 
 上面代码自定义一个错误对象UserError，让它继承Error对象。然后，就可以生成这种自定义的错误了。
 
-{% highlight javascript %}
+```javascript
+
 
 new UserError("这是自定义的错误！");
 
-{% endhighlight %}
+```
 
 ## throw语句
 

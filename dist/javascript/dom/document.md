@@ -1,11 +1,3 @@
----
-title: document节点
-layout: page
-category: dom
-date: 2014-05-18
-modifiedOn: 2014-05-18
----
-
 ## document节点概述
 
 `document`节点是文档的根节点，每张网页都有自己的`document`节点。`window.document`属性就指向这个节点。也就是说，只要浏览器开始载入HTML文档，这个节点对象就存在了，可以直接调用。

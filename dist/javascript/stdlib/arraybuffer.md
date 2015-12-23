@@ -1,11 +1,3 @@
----
-title: 二进制数组
-category: stdlib
-layout: page
-date: 2013-09-07
-modifiedOn: 2013-09-28
----
-
 # 二进制数组
 
 ArrayBuffer对象、TypedArray对象、DataView对象是JavaScript操作二进制数据的一个接口。这些对象早就存在，属于独立的规格，ES6将它们纳入了ECMAScript规格，并且增加了新的方法。

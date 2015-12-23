@@ -1,11 +1,3 @@
----
-title: Source Map
-layout: page
-category: tool
-date: 2013-01-23
-modifiedOn: 2013-06-20
----
-
 ## 概述
 
 随着JavaScript脚本变得越来越复杂，大部分源码（尤其是各种函数库和框架）都要经过转换，才能投入生产环境。
@@ -34,7 +26,8 @@ modifiedOn: 2013-06-20
 
 生成命令的格式如下：
 
-{% highlight java %}
+```java
+
 
 java -jar compiler.jar \ 
 　　--js script.js \
@@ -42,7 +35,7 @@ java -jar compiler.jar \
 　　--source_map_format=V3 \
 　　--js_output_file script-min.js
 
-{% endhighlight %}
+```
 
 各个参数的意义如下：
 
@@ -55,19 +48,21 @@ java -jar compiler.jar \
 
 启用Source map的方法很简单，只要在转换后的代码头部或尾部，加上一行就可以了。
 
-{% highlight javascript %}
+```javascript
+
 
 //# sourceMappingURL=/path/to/file.js.map
 
-{% endhighlight %}
+```
 
 或者
 
-{% highlight javascript %}
+```javascript
+
 
 /*# sourceMappingURL=/path/to/file.js.map */
 
-{% endhighlight %}
+```
 
 map文件可以放在网络上，也可以放在本地文件系统。
 
@@ -75,7 +70,8 @@ map文件可以放在网络上，也可以放在本地文件系统。
 
 打开Source map文件，它大概是这个样子：
 
-{% highlight javascript %}
+```javascript
+
 
 　　{
 　　　　version : 3,
@@ -86,7 +82,7 @@ map文件可以放在网络上，也可以放在本地文件系统。
 　　　　mappings: "AAgBC,SAAQ,CAAEA"
 　　}
 
-{% endhighlight %}
+```
 
 整个文件就是一个JavaScript对象，可以被解释器读取。它主要有以下几个属性：
 
@@ -109,11 +105,12 @@ map文件可以放在网络上，也可以放在本地文件系统。
 
 举例来说，假定mappings属性的内容如下：
 
-{% highlight javascript %}
+```javascript
+
 
 mappings:"AAAAA,BBBBB;CCCCC"
 
-{% endhighlight %}
+```
 
 它表示，转换后的源码分成两行，第一行有两个位置，第二行有一个位置。
 
@@ -139,7 +136,8 @@ VLQ编码是变长的。如果（整）数值在-15到+15之间（含两个端�
 
 这6个位中的右边最后一位（最低位）的含义，取决于这6个位是否是某个数值的VLQ编码的第一个字符。如果是的，这个位代表"符号"（sign），0为正，1为负（Source map的符号固定为0）；如果不是，这个位没有特殊含义，被算作数值的一部分。
 
-{% highlight bash %}
+```bash
+
 
 Continuation
 |　　　　　Sign
@@ -147,7 +145,7 @@ Continuation
 V　　　　　V
 １０１０１１
 
-{% endhighlight %}
+```
 
 下面举例如何对数值16进行VLQ编码。
 

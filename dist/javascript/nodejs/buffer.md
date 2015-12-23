@@ -1,11 +1,3 @@
----
-title: Buffer对象
-layout: page
-category: nodejs
-date: 2015-06-07
-modifiedOn: 2015-06-07
----
-
 ## 概述
 
 Buffer对象是Node.js用来处理二进制数据的一个接口。JavaScript比较擅长处理Unicode数据，对于处理二进制格式的数据（比如TCP数据流），就不太擅长。Buffer对象就是为了解决这个问题而提供的。该对象也是一个构造函数，它的实例代表了V8引擎分配的一段内存，基本上是一个数组，成员都为整数值。

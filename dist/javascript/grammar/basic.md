@@ -1,11 +1,3 @@
----
-title: 语法概述
-layout: page
-category: grammar
-date: 2012-12-14
-modifiedOn: 2013-12-08
----
-
 ## 基本句法和变量
 
 ### 语句
