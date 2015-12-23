@@ -1,11 +1,3 @@
----
-title: 移动设备API
-layout: page
-category: bom
-date: 2012-12-29
-modifiedOn: 2013-12-20
----
-
 为了更好地为移动设备服务，HTML 5推出了一系列针对移动设备的API。
 
 ## Viewport
@@ -46,7 +38,8 @@ Geolocation接口用于获取用户的地理位置。它使用的方法基于GPS
 
 下面的方法，可以检查浏览器是否支持这个接口。
 
-{% highlight javascript %}
+```javascript
+
 
 if(navigator.geolocation) { 
    // 支持
@@ -54,7 +47,7 @@ if(navigator.geolocation) {
    // 不支持
 }
 
-{% endhighlight %}
+```
 
 这个API的支持情况非常好，所有浏览器都支持（包括IE 9+），所以上面的代码不是很必要。
 
@@ -62,11 +55,12 @@ if(navigator.geolocation) {
 
 getCurrentPosition方法，用来获取用户的地理位置。使用它需要得到用户的授权，浏览器会跳出一个对话框，询问用户是否许可当前页面获取他的地理位置。必须考虑两种情况的回调函数：一种是同意授权，另一种是拒绝授权。如果用户拒绝授权，会抛出一个错误。
 
-{% highlight javascript %}
+```javascript
+
 
 navigator.geolocation.getCurrentPosition(geoSuccess,geoError);
 
-{% endhighlight %}
+```
 
 上面代码指定了处理当前地理位置的两个回调函数。
 
@@ -74,13 +68,14 @@ navigator.geolocation.getCurrentPosition(geoSuccess,geoError);
 
 如果用户同意授权，就会调用geoSuccess。
 
-{% highlight javascript %}
+```javascript
+
 
 function geoSuccess(event) {
    console.log(event.coords.latitude + ', ' + event.coords.longitude);
 }
 
-{% endhighlight %}
+```
 
 geoSuccess的参数是一个event对象。event有两个属性：timestamp和coords。timestamp属性是一个时间戳，返回获得位置信息的具体时间。coords属性指向一个对象，包含了用户的位置信息，主要是以下几个值：
 
@@ -98,13 +93,14 @@ geoSuccess的参数是一个event对象。event有两个属性：timestamp和coo
 
 如果用户拒绝授权，就会调用getCurrentPosition方法指定的第二个回调函数geoError。
 
-{% highlight javascript %}
+```javascript
+
 
 function geoError(event) { 
    console.log("Error code " + event.code + ". " + event.message);
 }
 
-{% endhighlight %}
+```
 
 geoError的参数也是一个event对象。event.code属性表示错误类型，有四个值：
 
@@ -117,7 +113,8 @@ geoError的参数也是一个event对象。event.code属性表示错误类型，
 
 getCurrentPosition方法还可以接受一个对象作为第三个参数，用来设置定位行为。
 
-{% highlight javascript %}
+```javascript
+
 
 var option = {
             enableHighAccuracy : true,
@@ -127,7 +124,7 @@ var option = {
 
 navigator.geolocation.getCurrentPosition(geoSuccess, geoError, option);
 
-{% endhighlight %}
+```
 
 这个参数对象有三个成员：
 
@@ -141,21 +138,23 @@ navigator.geolocation.getCurrentPosition(geoSuccess, geoError, option);
 
 watchPosition方法可以用来监听用户位置的持续改变，使用方法与getCurrentPosition方法一样。
 
-{% highlight javascript %}
+```javascript
+
 
 var watchID = navigator.geolocation.watchPosition(geoSuccess,geoError, option);
 
-{% endhighlight %}
+```
 
 一旦用户位置发生变化，就会调用回调函数geoSuccess。这个回调函数的事件对象，也包含timestamp和coords属性。
 
 watchPosition和getCurrentPosition方法的不同之处在于，前者返回一个表示符，后者什么都不返回。watchPosition方法返回的标识符，用于供clearWatch方法取消监听。
 
-{% highlight javascript %}
+```javascript
+
 
 navigator.geolocation.clearWatch(watchID);
 
-{% endhighlight %}
+```
 
 ## Vibration API
 
@@ -222,19 +221,21 @@ function startPeristentVibrate(duration, interval) {
 
 Luminosity API用于屏幕亮度调节，当移动设备的亮度传感器感知外部亮度发生显著变化时，会触发devicelight事件。目前，只有Firefox部署了这个API。
 
-{% highlight javascript %}
+```javascript
+
 
 window.addEventListener('devicelight', function(event) {
   console.log(event.value + 'lux');
 });
 
-{% endhighlight %}
+```
 
 上面代码表示，devicelight事件的回调函数，接受一个事件对象作为参数。该对象的value属性就是亮度的流明值。
 
 这个API的一种应用是，如果亮度变强，网页可以显示黑底白字，如果亮度变弱，网页可以显示白底黑字。
 
-{% highlight javascript %}
+```javascript
+
 
 window.addEventListener('devicelight', function(e) {
   var lux = e.value;
@@ -250,7 +251,7 @@ window.addEventListener('devicelight', function(e) {
   } 
 });
 
-{% endhighlight %}
+```
 
 CSS下一个版本的Media Query可以单独设置亮度，一旦浏览器支持，就可以用来取代Luminosity API。
 

@@ -1,11 +1,3 @@
----
-title: JavaScript解释器
-layout: page
-category: advanced
-date: 2016-07-06
-createdOn: 2016-07-06
----
-
 JavaScript解释器的作用，是执行JavaScript源码。它通常可以包含四个组成部分。
 
 - 词法分析器（Lexical Analyser）

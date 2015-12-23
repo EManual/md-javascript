@@ -1,11 +1,3 @@
----
-title: url 模块
-layout: page
-category: nodejs
-data: 2015-12-17
-modifiedOn: 2015-12-17
----
-
 `url`模块用于生成和解析URL。该模块使用前，必须加载。
 
 ```javascript

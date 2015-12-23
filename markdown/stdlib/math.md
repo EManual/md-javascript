@@ -1,11 +1,3 @@
----
-title: Math对象
-layout: page
-category: stdlib
-date: 2013-02-12
-modifiedOn: 2013-10-27
----
-
 Math对象是JavaScript的内置对象，提供一系列数学常数和数学方法。该对象不是构造函数，所以不能生成实例，所有的属性和方法都必须在Math对象上调用。
 
 ```javascript

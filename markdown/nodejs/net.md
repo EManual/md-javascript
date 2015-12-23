@@ -1,11 +1,3 @@
----
-title: Net模块和DNS模块
-layout: page
-category: nodejs
-date: 2015-03-17
-modifiedOn: 2015-03-17
----
-
 net模块用于底层的网络通信。
 
 ## 服务器端Socket接口

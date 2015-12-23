@@ -1,11 +1,3 @@
----
-title: package.json文件
-layout: page
-category: nodejs
-date: 2014-10-24
-modifiedOn: 2014-10-24
----
-
 ## 概述
 
 每个项目的根目录下面，一般都有一个`package.json`文件，定义了这个项目所需要的各种模块，以及项目的配置信息（比如名称、版本、许可证等元数据）。`npm install`命令根据这个配置文件，自动下载所需的模块，也就是配置项目所需的运行和开发环境。
@@ -69,7 +61,8 @@ scripts指定了运行脚本命令的npm命令行缩写，比如start指定了�
 
 下面的设置指定了npm run preinstall、npm run postinstall、npm run start、npm run test时，所要执行的命令。
 
-{% highlight javascript %}
+```javascript
+
 
 "scripts": {
     "preinstall": "echo here it comes!",
@@ -78,7 +71,7 @@ scripts指定了运行脚本命令的npm命令行缩写，比如start指定了�
     "test": "tap test/*.js"
 }
 
-{% endhighlight %}
+```
 
 ## dependencies字段，devDependencies字段，peerDependencies字段
 
@@ -101,20 +94,22 @@ $ npm init
 
 有了package.json文件，直接使用npm install命令，就会在当前目录中安装所需要的模块。
 
-{% highlight bash %}
+```bash
+
 
 npm install
 
-{% endhighlight %}
+```
 
 如果一个模块不在package.json文件之中，可以单独安装这个模块，并使用相应的参数，将其写入package.json文件之中。
 
-{% highlight bash %}
+```bash
+
 
 npm install express --save
 npm install express --save-dev
 
-{% endhighlight %}
+```
 
 上面代码表示单独安装express模块，--save参数表示将该模块写入dependencies属性，--save-dev表示将该模块写入devDependencies属性。
 

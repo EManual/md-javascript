@@ -1,11 +1,3 @@
----
-title: 为什么学习JavaScript？
-layout: page
-category: introduction
-date: 2012-12-29
-modifiedOn: 2014-01-09
----
-
 本节谈谈为什么要学JavaScript，它有什么用？
 
 JavaScript语言有一些显著特点，使得它非常值得学习。它既适合当作学习编程的入门语言，也适合当作日常开发的工作语言。它是目前最有希望、前途最光明的计算机语言之一。

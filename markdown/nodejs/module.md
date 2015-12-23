@@ -1,11 +1,3 @@
----
-title: CommonJS规范
-layout: page
-category: nodejs
-date: 2013-06-04
-modifiedOn: 2013-08-13
----
-
 ## 概述
 
 Node程序由许多个模块组成，每个模块就是一个文件。Node模块采用了CommonJS规范。

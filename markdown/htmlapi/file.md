@@ -1,11 +1,3 @@
----
-title: 文件和二进制数据的操作
-date: 2012-11-30
-layout: page
-category: htmlapi
-modifiedOn: 2013-09-06
----
-
 历史上，JavaScript无法处理二进制数据。如果一定要处理的话，只能使用charCodeAt()方法，一个个字节地从文字编码转成二进制数据，还有一种办法是将二进制数据转成Base64编码，再进行处理。这两种方法不仅速度慢，而且容易出错。ECMAScript 5引入了Blob对象，允许直接操作二进制数据。
 
 Blob对象是一个代表二进制数据的基本对象，在它的基础上，又衍生出一系列相关的API，用来操作文件。
@@ -289,15 +281,17 @@ function updateProgress(evt) {
 
 假设有一个表单，用于用户选取图片。
 
-{% highlight html %}
+```html
+
 
 <input type="file" name="picture" accept="image/png, image/jpeg"/>
 
-{% endhighlight %}
+```
 
 一旦用户选中图片，将其显示在canvas的函数可以这样写：
 
-{% highlight javascript %}
+```javascript
+
 
 document.querySelector('input[name=picture]').onchange = function(e){
      readFile(e.target.files[0]);
@@ -314,11 +308,12 @@ function readFile(file){
   reader.reaAsDataURL(file);
 }
 
-{% endhighlight %}
+```
 
 还可以在canvas上面定义拖放事件，允许用户直接拖放图片到上面。
 
-{% highlight javascript %}
+```javascript
+
 
 // stop FireFox from replacing the whole page with the file.
 canvas.ondragover = function () { return false; };
@@ -334,13 +329,14 @@ canvas.ondrop = function (e) {
   }
 };
 
-{% endhighlight %}
+```
 
 所有的拖放事件都有一个dataTransfer属性，它包含拖放过程涉及的二进制数据。
 
 还可以让canvas显示剪贴板中的图片。
 
-{% highlight javascript %}
+```javascript
+
 
 document.onpaste = function(e){
   e.preventDefault();
@@ -356,31 +352,34 @@ document.onpaste = function(e){
   return false;
 };
 
-{% endhighlight %}
+```
 
 ## URL对象
 
 URL对象用于生成指向File对象或Blob对象的URL。
 
-{% highlight javascript %}
+```javascript
+
 
 var objecturl =  window.URL.createObjectURL(blob);
 
-{% endhighlight %}
+```
 
 上面的代码会对二进制数据生成一个URL，类似于“blob:http%3A//test.com/666e6730-f45c-47c1-8012-ccc706f17191”。这个URL可以放置于任何通常可以放置URL的地方，比如img标签的src属性。需要注意的是，即使是同样的二进制数据，每调用一次URL.createObjectURL方法，就会得到一个不一样的URL。
 
 这个URL的存在时间，等同于网页的存在时间，一旦网页刷新或卸载，这个URL就失效。除此之外，也可以手动调用URL.revokeObjectURL方法，使URL失效。
 
-{% highlight javascript %}
+```javascript
+
 
 window.URL.revokeObjectURL(objectURL);
 
-{% endhighlight %}
+```
 
 下面是一个利用URL对象，在网页插入图片的例子。
 
-{% highlight javascript %}
+```javascript
+
 
 var img = document.createElement("img");
 
@@ -400,11 +399,12 @@ info.innerHTML = files[i].name + ": " + files[i].size + " bytes";
 
 body.appendChild(info);
 
-{% endhighlight %}
+```
 
 还有一个本机视频预览的例子。
 
-{% highlight javascript %}
+```javascript
+
 
 var video = document.getElementById('video');
 var obj_url = window.URL.createObjectURL(blob);
@@ -412,7 +412,7 @@ video.src = obj_url;
 video.play()
 window.URL.revokeObjectURL(obj_url);
 
-{% endhighlight %}
+```
 
 ## 参考链接
 

@@ -1,11 +1,3 @@
----
-title: 严格模式
-layout: page
-category: advanced
-date: 2013-01-11
-modifiedOn: 2013-01-25
----
-
 ## 概述
 
 除了正常运行模式，ECMAScript 5添加了第二种运行模式：“严格模式”（strict mode）。顾名思义，这种模式使得JavaScript在更严格的条件下运行。

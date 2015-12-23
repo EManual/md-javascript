@@ -1,10 +1,3 @@
----
-layout: homepage
-title: JavaScript 标准参考教程（alpha）
-date: 2012-11-18
-modifiedOn: 2014-05-18
----
-
 <h2 id="introduction">导论与历史</h2>
 
 - [导论](introduction/intro.html)

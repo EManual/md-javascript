@@ -1,11 +1,3 @@
----
-title: RegExp对象
-layout: page
-category: stdlib
-date: 2013-01-17
-modifiedOn: 2014-01-06
----
-
 ## 概述
 
 正则表达式（regular expression）是一种表达文本模式（即字符串结构）的方法，有点像字符串的模板，常常用作按照“给定模式”匹配文本的工具。比如，正则表达式给出一个Email地址的模式，然后用它来确定一个字符串是否为Email地址。JavaScript的正则表达式体系是参照Perl 5建立的。

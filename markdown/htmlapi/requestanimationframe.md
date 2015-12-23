@@ -1,11 +1,3 @@
----
-title: requestAnimationFrame
-layout: page
-category: htmlapi
-date: 2013-02-12
-modifiedOn: 2013-09-26
----
-
 ## 概述
 
 requestAnimationFrame是浏览器用于定时循环操作的一个接口，类似于setTimeout，主要用途是按帧对网页进行重绘。
@@ -18,15 +10,17 @@ requestAnimationFrame的优势，在于充分利用显示器的刷新机制，�
 
 requestAnimationFrame使用一个回调函数作为参数。这个回调函数会在浏览器重绘之前调用。
 
-{% highlight javascript %}
+```javascript
+
 
 requestID = window.requestAnimationFrame(callback); 
 
-{% endhighlight %}
+```
 
 目前，主要浏览器Firefox 23 / IE 10 / Chrome / Safari）都支持这个方法。可以用下面的方法，检查浏览器是否支持这个API。如果不支持，则自行模拟部署该方法。
 
-{% highlight javascript %}
+```javascript
+
 
  window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       || 
@@ -39,13 +33,14 @@ requestID = window.requestAnimationFrame(callback);
               };
     })();
 
-{% endhighlight %}
+```
 
 上面的代码按照1秒钟60次（大约每16.7毫秒一次），来模拟requestAnimationFrame。
 
 使用requestAnimationFrame的时候，只需反复调用它即可。
 
-{% highlight javascript %}
+```javascript
+
 
 function repeatOften() {
   // Do whatever
@@ -54,21 +49,23 @@ function repeatOften() {
 
 requestAnimationFrame(repeatOften);
 
-{% endhighlight %}
+```
 
 ## cancelAnimationFrame方法
 
 cancelAnimationFrame方法用于取消重绘。
 
-{% highlight javascript %}
+```javascript
+
 
 window.cancelAnimationFrame(requestID);
 
-{% endhighlight %}
+```
 
 它的参数是requestAnimationFrame返回的一个代表任务ID的整数值。
 
-{% highlight javascript %}
+```javascript
+
 
 var globalID;
 
@@ -85,7 +82,7 @@ $("#stop").on("click", function() {
   cancelAnimationFrame(globalID);
 });
 
-{% endhighlight %}
+```
 
 上面代码持续在body元素下添加div元素，直到用户点击stop按钮为止。
 
@@ -95,15 +92,17 @@ $("#stop").on("click", function() {
 
 假定网页中有一个动画区块。
 
-{% highlight html %}
+```html
+
 
 <div id="anim">点击运行动画</div> 
 
-{% endhighlight %}
+```
 
 然后，定义动画效果。
 
-{% highlight javascript %}
+```javascript
+
 
 var elem = document.getElementById("anim");
 
@@ -119,11 +118,12 @@ function render(time) {
   elem.style.left = ((time - startTime)/10 % 500) + "px";
 }
 
-{% endhighlight %}
+```
 
 最后，定义click事件。
 
-{% highlight javascript %}
+```javascript
+
 
 elem.onclick = function() {
 
@@ -134,7 +134,7 @@ elem.onclick = function() {
 
 };
 
-{% endhighlight %}
+```
 
 运行效果可查看[jsfiddle](http://jsfiddle.net/paul/rjbGw/3/)。
 

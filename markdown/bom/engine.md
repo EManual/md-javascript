@@ -1,11 +1,3 @@
----
-title: 浏览器的JavaScript引擎
-layout: page
-category: bom
-date: 2013-03-10
-modifiedOn: 2013-12-22
----
-
 浏览器的核心是两部分：渲染引擎和JavaScript解释器（又称JavaScript引擎）。
 
 不同的浏览器有不同的渲染引擎，Firefox浏览器为Gecko引擎，Safari为WebKit引擎，Chrome为Blink引擎。它的主要作用是生成网页，通常分成四个阶段。

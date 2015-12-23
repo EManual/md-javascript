@@ -1,11 +1,3 @@
----
-title: 定时器
-category: bom
-layout: page
-date: 2014-10-12
-modifiedOn: 2014-10-12
----
-
 JavaScript提供定时执行代码的功能，叫做定时器（timer），主要由setTimeout()和setInterval()这两个函数来完成。它们向任务队列添加定时任务。
 
 ## setTimeout()
@@ -352,13 +344,14 @@ setTimeout的作用是将代码推迟到指定时间执行，如果指定时间�
 
 setTimeout(f,0)将第二个参数设为0，作用是让f在现有的任务（脚本的同步任务和“任务队列”中已有的事件）一结束就立刻执行。也就是说，setTimeout(f,0)的作用是，尽可能早地执行指定的任务。
 
-{% highlight javascript %}
+```javascript
+
 
 setTimeout(function (){
   console.log("你好！");
 }, 0);
 
-{% endhighlight %}
+```
 
 上面代码的含义是，尽可能早地显示“你好！”。
 

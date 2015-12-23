@@ -1,11 +1,3 @@
----
-title: Web Notifications API
-layout: page
-category: bom
-date: 2014-05-06
-modifiedOn: 2014-05-06
----
-
 ## 概述
 
 Notification API是浏览器的通知接口，用于在用户的桌面（而不是网页上）显示通知信息，桌面电脑和手机都适用，比如通知用户收到了一封Email。具体的实现形式由浏览器自行部署，对于手机来说，一般显示在顶部的通知栏。

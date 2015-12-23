@@ -1,11 +1,3 @@
----
-title: npm模块管理器
-layout: page
-category: nodejs
-date: 2014-10-24
-modifiedOn: 2014-10-24
----
-
 ## 简介
 
 npm有两层含义。一层含义是Node.js的开放式模块登记和管理系统，网址为[http://npmjs.org](http://npmjs.org)。另一层含义是Node.js默认的模块管理器，是一个命令行下的软件，用来安装和管理node模块。
@@ -782,43 +774,48 @@ npm的通配符的规则如下。
 
 先在模块目录（src/myModule）下运行npm link命令。
 
-{% highlight bash %}
+```bash
+
 
 src/myModule$ npm link
 
-{% endhighlight %}
+```
 
 上面的命令会在npm的全局模块目录内（比如/usr/local/lib/node_modules/），生成一个符号链接文件，该文件的名字就是package.json文件中指定的文件名。
 
-{% highlight bash %}
+```bash
+
 
 /usr/local/lib/node_modules/myModule -> src/myModule
 
-{% endhighlight %}
+```
 
 然后，切换到你需要放置该模块的项目目录，再次运行npm link命令，并指定模块名。
 
-{% highlight bash %}
+```bash
+
 
 src/myProject$ npm link myModule
 
-{% endhighlight %}
+```
 
 上面命令等同于生成了本地模块的符号链接。
 
-{% highlight bash %}
+```bash
+
 
 src/myProject/node_modules/myModule -> /usr/local/lib/node_modules/myModule
 
-{% endhighlight %}
+```
 
 然后，就可以在你的项目中，加载该模块了。
 
-{% highlight javascript %}
+```javascript
+
 
 var myModule = require('myModule');
 
-{% endhighlight %}
+```
 
 这样一来，myModule的任何变化，都可以直接在myProject中调用。但是，同时也出现了风险，任何在myProject目录中对myModule的修改，都会反映到模块的源码中。
 
@@ -839,11 +836,12 @@ $ src/myProject$ npm link myModule
 
 如果你的项目不再需要该模块，可以在项目目录内使用npm unlink命令，删除符号链接。
 
-{% highlight bash %}
+```bash
+
 
 src/myProject$ npm unlink myModule
 
-{% endhighlight %}
+```
 
 一般来说，npm公共模块都安装在系统目录（比如/usr/local/lib/），普通用户没有写入权限，需要用到sudo命令。这不是很方便，我们可以在没有root的情况下，用好npm。
 

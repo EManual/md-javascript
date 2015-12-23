@@ -1,11 +1,3 @@
----
-title: Page Visibility API
-layout: page
-date: 2012-11-20
-category: htmlapi
-modifiedOn: 2013-09-26
----
-
 PageVisibility API用于判断页面是否处于浏览器的当前窗口，即是否可见。
 
 使用这个API，可以帮助开发者根据用户行为调整程序。比如，如果页面处于当前窗口，可以让程序每隔15秒向服务器请求数据；如果不处于当前窗口，则让程序每隔几分钟请求一次数据。
@@ -20,7 +12,8 @@ PageVisibility API用于判断页面是否处于浏览器的当前窗口，即�
 
 这两个属性都带有浏览器前缀。使用的时候，必须进行前缀识别。
 
-{% highlight javascript %}
+```javascript
+
 
 function getHiddenProp(){
     var prefixes = ['webkit','moz','ms','o'];
@@ -38,19 +31,20 @@ function getHiddenProp(){
     return null;
 }
 
-{% endhighlight %}
+```
 
 ## VisibilityChange事件
 
 当页面的可见状态发生变化时，会触发VisibilityChange事件（带有浏览器前缀）。
 
-{% highlight javascript %}
+```javascript
+
 
 document.addEventListener("visibilitychange", function() {
   console.log( document.visibilityState );
 });
 
-{% endhighlight %}
+```
 
 ## 参考链接
 

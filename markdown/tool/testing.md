@@ -1,11 +1,3 @@
----
-title: JavaScript 程序测试
-category: tool
-layout: page
-date: 2015-06-08
-modifiedOn: 2015-06-08
----
-
 ## 为什么要写测试？
 
 Web应用程序越来越复杂，这意味着有更多的可能出错。测试是帮助我们提高代码质量、降低错误的最好方法和工具之一。

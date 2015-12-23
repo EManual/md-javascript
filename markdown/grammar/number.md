@@ -1,11 +1,3 @@
----
-title: 数值
-layout: page
-category: grammar
-date: 2013-02-13
-modifiedOn: 2013-10-22
----
-
 ## 概述
 
 ### 整数和浮点数
@@ -119,12 +111,13 @@ JavaScript的数值有多种表示方法，可以用字面形式直接表示，�
 
 **（2）小数点后的零多于5个。**
 
-{% highlight javascript %}
+```javascript
+
 
 0.0000003 // 3e-7
 0.000003 // 0.000003
 
-{% endhighlight %}
+```
 
 ## 数值的进制
 
@@ -170,21 +163,23 @@ JavaScript提供几个特殊的数值。
 
 严格来说，JavaScript提供零的三种写法：0、+0、-0。它们是等价的。
 
-{% highlight javascript %}
+```javascript
+
 
 -0 === +0 // true
 0 === -0 // true
 0 === +0 // true
 
-{% endhighlight %}
+```
 
 但是，如果正零和负零分别当作分母，它们返回的值是不相等的。
 
-{% highlight javascript %}
+```javascript
+
 
 (1/+0) === (1/-0) // false
 
-{% endhighlight %}
+```
 
 上面代码之所以出现这样结果，是因为除以正零得到+Infinity，除以负零得到-Infinity，这两者是不相等的（关于Infinity详见后文）。
 
@@ -194,50 +189,55 @@ JavaScript提供几个特殊的数值。
 
 NaN是JavaScript的特殊值，表示“非数字”（Not a Number），主要出现在将字符串解析成数字出错的场合。
 
-{% highlight javascript %}
+```javascript
+
 
 5 - 'x'
 // NaN
 
-{% endhighlight %}
+```
 
 上面代码运行时，会自动将字符串“x”转为数值，但是由于x不是数字，所以最后得到结果为NaN，表示它是“非数字”（NaN）。
 
 另外，一些数学函数的运算结果会出现NaN。
 
-{% highlight javascript %}
+```javascript
+
 
 Math.acos(2) // NaN
 Math.log(-1) // NaN
 Math.sqrt(-1) // NaN
 
-{% endhighlight %}
+```
 
 0除以0也会得到NaN。
 
-{% highlight javascript %}
+```javascript
+
 
 0 / 0 // NaN
 
-{% endhighlight %}
+```
 
 需要注意的是，NaN不是一种独立的数据类型，而是一种特殊数值，它的数据类型依然属于Number，使用typeof运算符可以看得很清楚。
 
-{% highlight javascript %}
+```javascript
+
 
 typeof NaN // 'number'
 
-{% endhighlight %}
+```
 
 **（2）运算规则**
 
 NaN不等于任何值，包括它本身。
 
-{% highlight javascript %}
+```javascript
+
 
 NaN === NaN // false
 
-{% endhighlight %}
+```
 
 由于数组的indexOf方法，内部使用的是严格相等运算符，所以该方法对NaN不成立。
 
@@ -253,14 +253,15 @@ Boolean(NaN) // false
 
 NaN与任何数（包括它自己）的运算，得到的都是NaN。
 
-{% highlight javascript %}
+```javascript
+
 
 NaN + 32 // NaN
 NaN - 32 // NaN
 NaN * 32 // NaN
 NaN / 32 // NaN
 
-{% endhighlight %}
+```
 
 **（3）判断NaN的方法**
 
@@ -323,33 +324,36 @@ function myIsNaN(value) {
 
 Infinity表示“无穷”。除了0除以0得到NaN，其他任意数除以0，得到Infinity。
 
-{% highlight javascript %}
+```javascript
+
 
 1 / -0 // -Infinity
 1 / +0 // Infinity
 
-{% endhighlight %}
+```
 
 上面代码表示，非0值除以0，JavaScript不报错，而是返回Infinity。这是需要特别注意的地方。
 
 Infinity有正负之分。
 
-{% highlight javascript %}
+```javascript
+
 
 Infinity === -Infinity // false
 Math.pow(+0, -1) // Infinity
 Math.pow(-0, -1) // -Infinity
 
-{% endhighlight %}
+```
 
 运算结果超出JavaScript可接受范围，也会返回无穷。
 
-{% highlight javascript %}
+```javascript
+
 
 Math.pow(2, 2048) // Infinity
 -Math.pow(2, 2048) // -Infinity
 
-{% endhighlight %}
+```
 
 由于数值正向溢出（overflow）、负向溢出（underflow）和被0除，JavaScript都不报错，所以单纯的数学运算几乎没有可能抛出错误。
 
@@ -357,7 +361,8 @@ Math.pow(2, 2048) // Infinity
 
 Infinity的四则运算，符合无穷的数学计算规则。
 
-{% highlight javascript %}
+```javascript
+
 
 Infinity + Infinity // Infinity
 5 * Infinity // Infinity
@@ -365,38 +370,41 @@ Infinity + Infinity // Infinity
 Infinity / 5 // Infinity
 5 / Infinity // 0
 
-{% endhighlight %}
+```
 
 Infinity减去或除以Infinity，得到NaN。
 
-{% highlight javascript %}
+```javascript
+
 
 Infinity - Infinity // NaN
 Infinity / Infinity // NaN
 
-{% endhighlight %}
+```
 
 Infinity可以用于布尔运算。可以记住，Infinity是JavaScript中最大的值（NaN除外），-Infinity是最小的值（NaN除外）。
 
-{% highlight javascript %}
+```javascript
+
 
 5 > -Infinity // true
 5 > Infinity // false
 
-{% endhighlight %}
+```
 
 **（3）isFinite函数**
 
 isFinite函数返回一个布尔值，检查某个值是否为正常值，而不是Infinity。
 
-{% highlight javascript %}
+```javascript
+
 
 isFinite(Infinity) // false
 isFinite(-1) // true
 isFinite(true) // true
 isFinite(NaN) // false
 
-{% endhighlight %}
+```
 
 上面代码表示，如果对NaN使用isFinite函数，也返回false，表示NaN不是一个正常值。
 
